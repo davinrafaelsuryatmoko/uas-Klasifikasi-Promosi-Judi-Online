@@ -81,7 +81,9 @@ Pada proyek ini, mahasiswa diharapkan dapat:
 **Contoh referensi (berformat APA/IEEE):**
 > Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press.
 
-**[Jelaskan konteks dan latar belakang proyek]**
+**[Judi online menjadi salah satu masalah yang banyak ditemukan di Indonesia. Promosinya tersebar melalui media sosial dengan berbagai bentuk, seperti ajakan bermain, bonus, dan hadiah.
+
+Banyaknya konten tersebut membuat proses identifikasi secara manual membutuhkan waktu. Oleh karena itu, proyek ini menggunakan Machine Learning untuk mengklasifikasikan teks menjadi promosi judi online dan bukan promosi judi online menggunakan tiga pendekatan model, yaitu Naive Bayes, Random Forest, dan LSTM.]**
 
 ### 2.2 Keterkaitan dengan SDGs (WAJIB)
 
@@ -89,19 +91,19 @@ Ide proyek **berasal dari mahasiswa** dan harus selaras dengan **salah satu** da
 
 | Komponen | Pertanyaan Panduan | Jawaban Anda |
 |----------|--------------------|--------------|
-| **SDG yang dipilih** | Goal nomor berapa dan apa namanya? | [ ... ] |
-| **Target SDG** | Target (misal 3.4, 13.1) mana yang paling relevan? | [ ... ] |
-| **Masalah nyata** | Masalah konkret apa yang diangkat? Siapa yang terdampak? | [ ... ] |
-| **Peran ML** | Mengapa ML/DL cocok? Apa keputusan atau proses yang dibantu? | [ ... ] |
-| **Indikator kontribusi** | Bagaimana hasil model berkontribusi pada target SDG (langsung/tidak langsung)? | [ ... ] |
-| **Pertimbangan etika** | Risiko bias, privasi, atau dampak salah prediksi? | [ ... ] |
+| **SDG yang dipilih** | Goal nomor berapa dan apa namanya? | [ SDG 3 – Good Health and Well-Being (Kehidupan Sehat dan Sejahtera). ] |
+| **Target SDG** | Target (misal 3.4, 13.1) mana yang paling relevan? | [ Target 3.4 – Meningkatkan kesehatan mental dan kesejahteraan. ] |
+| **Masalah nyata** | Masalah konkret apa yang diangkat? Siapa yang terdampak? | [ Promosi judi online dapat mendorong masyarakat untuk mencoba perjudian dan berpotensi berdampak pada kesejahteraan. ] |
+| **Peran ML** | Mengapa ML/DL cocok? Apa keputusan atau proses yang dibantu? | [ Membantu mengidentifikasi dan mengklasifikasikan konten promosi judi online secara otomatis. ] |
+| **Indikator kontribusi** | Bagaimana hasil model berkontribusi pada target SDG (langsung/tidak langsung)? | [ Kemampuan model dalam mendeteksi konten promosi berdasarkan nilai F1-Score, Precision, dan Recall. ] |
+| **Pertimbangan etika** | Risiko bias, privasi, atau dampak salah prediksi? | [ Memperhatikan privasi, lisensi dataset, bias data, dan kesalahan klasifikasi. ] |
 
-**Sumber ide:** [Jelaskan dari mana ide muncul: pengalaman pribadi, lingkungan sekitar, isu lokal/nasional, dll.]
+**Sumber ide:** [Berasal dari permasalahan penyebaran promosi judi online di media sosial yang menjadi perhatian masyarakat Indonesia.]
 
 ### 2.3 Ringkasan Alur Lifecycle Proyek
 Jelaskan dalam 1 paragraf pendek bagaimana proyek Anda melewati tahap L → M → O → P (dan iterasi apa yang direncanakan).
 
-**[Tulis ringkasan alur lifecycle proyek Anda]**
+**[Proyek dimulai dengan menentukan masalah dan mengumpulkan dataset teks promosi judi online. Selanjutnya, data dibersihkan dan dipersiapkan sebelum digunakan untuk melatih tiga model, yaitu Naive Bayes, Random Forest, dan LSTM. Setelah pelatihan, setiap model diuji dan dibandingkan menggunakan metrik evaluasi. Hasil evaluasi digunakan untuk menentukan model dengan performa terbaik dan melakukan perbaikan jika diperlukan.]**
 
 ---
 
@@ -116,7 +118,19 @@ Tuliskan 2–4 pernyataan masalah yang jelas dan spesifik.
 3. Dataset memiliki noise sehingga perlu preprocessing yang tepat
 4. Dibutuhkan model deep learning yang mampu belajar representasi fitur kompleks
 
-**[Tulis problem statements Anda di sini]**
+**[1. Banyak konten promosi judi online tersebar di media sosial.
+
+
+
+2. Identifikasi konten promosi secara manual membutuhkan waktu.
+
+
+
+3. Diperlukan model yang mampu membedakan konten promosi judi online dan bukan promosi.
+
+
+
+4. Perlu dilakukan perbandingan beberapa model untuk mengetahui model dengan performa terbaik.]**
 
 ### 3.2 Formulasi Learning Problem (WAJIB)
 
@@ -124,9 +138,9 @@ Rumuskan masalah dalam kerangka *Learning Problem*:
 
 | Komponen | Pertanyaan Panduan | Jawaban Anda |
 |----------|--------------------|--------------|
-| **Target** | Apa yang diprediksi? Jenis tugas (klasifikasi biner/multikelas, regresi, forecasting, clustering, dll.)? | [ ... ] |
-| **Objective** | Apa yang dioptimalkan/diminimalkan secara matematis (misal: cross-entropy, MSE)? Metrik keberhasilan utama? | [ ... ] |
-| **Data** | Sumber, ukuran, jenis, dan asumsi tentang data (i.i.d.? distribusi train vs test?) | [ ... ] |
+| **Target** | Apa yang diprediksi? Jenis tugas (klasifikasi biner/multikelas, regresi, forecasting, clustering, dll.)? | [ Mengklasifikasikan teks menjadi dua kelas: promosi judi online (1) dan bukan promosi judi online (0). Jenis tugas: Binary Classification. ] |
+| **Objective** | Apa yang dioptimalkan/diminimalkan secara matematis (misal: cross-entropy, MSE)? Metrik keberhasilan utama? | [ Meminimalkan kesalahan prediksi menggunakan fungsi loss Cross-Entropy dan memperoleh nilai F1-Score yang baik. ] |
+| **Data** | Sumber, ukuran, jenis, dan asumsi tentang data (i.i.d.? distribusi train vs test?) | [ Dataset teks berbahasa Indonesia dari Indonesian Online Gambling Promotion Dataset dan kandidat Indonesian Gambling Words Dataset. ] |
 
 ### 3.3 Goals
 
@@ -139,7 +153,23 @@ Tujuan harus spesifik, terukur, dan selaras dengan problem statement.
 
 > Sertakan minimal satu goal yang menunjukkan kontribusi terhadap target SDG yang dipilih (Bab 2.2).
 
-**[Tulis goals Anda di sini]**
+**[1. Mengolah dataset promosi judi online menjadi data yang siap digunakan.
+
+
+
+2. Membangun tiga model, yaitu Naive Bayes, Random Forest, dan LSTM.
+
+
+
+3. Membandingkan performa ketiga model menggunakan metrik evaluasi.
+
+
+
+4. Menentukan model terbaik berdasarkan nilai F1-Score.
+
+
+
+5. Membantu proses identifikasi konten promosi judi online melalui klasifikasi teks.]**
 
 ### 3.4 Solution Approach  **[M]**
 
@@ -153,7 +183,9 @@ Model sederhana sebagai pembanding dasar.
 - Decision Tree
 - Naive Bayes
 
-**[Jelaskan model baseline yang Anda pilih dan alasannya]**
+**[Multinomial Naive Bayes
+
+Model ini dipilih sebagai pembanding awal karena sederhana dan cocok untuk klasifikasi teks. Model memprediksi kategori berdasarkan pola kemunculan kata dalam teks.]**
 
 #### **Model 2 – Advanced / ML Model**
 Model machine learning yang lebih kompleks.
@@ -165,7 +197,9 @@ Model machine learning yang lebih kompleks.
 - Clustering (K-Means, DBSCAN) - untuk unsupervised
 - PCA / dimensionality reduction (untuk preprocessing)
 
-**[Jelaskan model advanced yang Anda pilih dan alasannya]**
+**[Random Forest
+
+Random Forest dipilih karena menggunakan gabungan beberapa Decision Tree untuk menghasilkan prediksi. Model ini akan digunakan untuk membandingkan kemampuan klasifikasi terhadap Naive Bayes.]**
 
 #### **Model 3 – Deep Learning Model (WAJIB)**
 Model deep learning yang sesuai dengan jenis data.
@@ -206,21 +240,26 @@ Model deep learning yang sesuai dengan jenis data.
 - ❌ Model tidak di-train (hanya define arsitektur)
 - ❌ Tidak ada evaluasi pada test set
 
-**[Jelaskan model deep learning yang Anda pilih dan alasannya]**
+**[Long Short-Term Memory (LSTM)
+
+LSTM dipilih karena dapat mempelajari urutan kata dalam sebuah kalimat. Model ini digunakan untuk mengenali pola teks promosi judi online yang lebih kompleks.
+
+Model akan dilatih minimal 10 epoch, kemudian dievaluasi menggunakan data testing. Hasil training akan ditampilkan melalui grafik loss dan accuracy.]**
 
 ---
 
 ## 4. DATA UNDERSTANDING  **[L]**
 ### 4.1 Informasi Dataset
 **Sumber Dataset:**  
-[Sebutkan sumber: Kaggle, UCI ML Repository, atau sumber lain dengan URL]
+[Hugging Face – Indonesian Online Gambling Promotion Dataset
+link https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset?utm_source=chatgpt.com]
 
 **Deskripsi Dataset:**
-- Jumlah baris (rows): [angka]
-- Jumlah kolom (columns/features): [angka]
-- Tipe data: [Tabular / Image / Text / Time Series / Audio / Video]
-- Ukuran dataset: [MB/GB]
-- Format file: [CSV / JSON / Images / TXT / etc.]
+- Jumlah baris (rows): [	5.028 data]
+- Jumlah kolom (columns/features): [5 kolom]
+- Tipe data: [Text dan Image (Multimodal)]
+- Ukuran dataset: [Sekitar 938 MB (termasuk gambar)]
+- Format file: [CSV dan JPG]
 
 ### 4.2 Deskripsi Fitur
 Jelaskan setiap fitur/kolom yang ada dalam dataset.
@@ -228,26 +267,28 @@ Jelaskan setiap fitur/kolom yang ada dalam dataset.
 | Nama Fitur | Tipe Data | Deskripsi | Contoh Nilai |
 |------------|-----------|-----------|--------------|
 | id | Integer | ID unik data | 1, 2, 3 |
-| age | Integer | Usia (tahun) | 25, 30, 45 |
-| income | Float | Pendapatan (juta) | 5.5, 10.2 |
-| category | Categorical | Kategori produk | A, B, C |
-| text | String | Teks ulasan | "Produk bagus..." |
-| image | Image | Citra 224x224 RGB | Array 224x224x3 |
-| label | Categorical | Label target | 0, 1 atau "positif", "negatif" |
+| text_caption | String | Teks atau caption postingan | "Daftar sekarang bonus member baru" |
+| image_path | String | Lokasi file gambar | image/image_1.jpg |
+| platform | Categorical | Asal platform media sosial | Facebook, TikTok, X |
+| label | Float | Kategori konten | 0.0 atau 1.0|
 
-**[Buat tabel deskripsi fitur Anda di sini]**
+**[Fitur yang digunakan dalam penelitian:
+
+Untuk penelitian ini, fokus utama adalah kolom text_caption sebagai data input dan label sebagai target prediksi. Kolom platform dapat digunakan sebagai fitur tambahan setelah diuji manfaatnya.
+
+Kolom id dan image_path tidak digunakan sebagai fitur utama karena penelitian berfokus pada klasifikasi teks]**
 
 ### 4.3 Kondisi Data
 
 Jelaskan kondisi dan permasalahan data:
 
-- **Missing Values:** [Ada/Tidak, berapa persen?]
-- **Duplicate Data:** [Ada/Tidak, berapa banyak?]
-- **Outliers:** [Ada/Tidak, pada fitur apa?]
-- **Imbalanced Data:** [Ada/Tidak, rasio kelas?]
-- **Noise:** [Jelaskan jika ada]
-- **Data Quality Issues:** [Jelaskan jika ada masalah lain]
-- **Asumsi Data (i.i.d., distribusi train-test, potensi data leakage):** [Jelaskan]
+- **Missing Values:** [Ada/Tidak, berapa persen? Belum diketahui secara pasti. Perlu diperiksa menggunakan Python.]
+- **Duplicate Data:** [Ada/Tidak, berapa banyak?Dataset telah melalui proses deduplikasi dan penyaringan oleh pembuat dataset. Tetap perlu diperiksa kembali.]
+- **Outliers:** [Ada/Tidak, pada fitur apa?Belum diperiksa. Dapat berupa caption yang terlalu pendek, terlalu panjang, atau karakter tidak biasa.]
+- **Imbalanced Data:** [Ada/Tidak, rasio kelas?Ada sedikit ketidakseimbangan kelas: 43,7% promosi dan 56,3% bukan promosi.]
+- **Noise:** [Jelaskan jika ada ?Terdapat kemungkinan bahasa tidak baku, singkatan, simbol, emoji, dan kesalahan penulisan.]
+- **Data Quality Issues:** [Jelaskan jika ada masalah lain ? Perlu memeriksa teks kosong, duplikasi caption, dan kesesuaian label.]
+- **Asumsi Data (i.i.d., distribusi train-test, potensi data leakage):** [Data diasumsikan mewakili pola konten yang akan diklasifikasikan. Data training dan testing harus dipisahkan agar tidak terjadi data leakage.]
 
 ### 4.4 Exploratory Data Analysis (EDA) - (**OPSIONAL**)
 
@@ -987,16 +1028,18 @@ Referensi resmi: [Transforming our world: the 2030 Agenda for Sustainable Develo
 
 | Komponen | Isian Mahasiswa |
 |----------|-----------------|
-| Nama / NIM | [ ... ] |
-| Judul ide | [ ... ] |
-| SDG & target yang dipilih | [ ... ] |
-| Masalah nyata yang diangkat | [ ... ] |
-| Tugas ML (Target & jenis tugas) | [ ... ] |
-| Objective & metrik utama | [ ... ] |
-| Dataset (sumber, URL, ukuran, jenis data) | [ ... ] |
-| Rencana tiga model (baseline / advanced / deep learning) | [ ... ] |
-| Risiko & pertimbangan etika (bias, privasi) | [ ... ] |
-| Referensi awal (minimal 2) | [ ... ] |
+| Nama / NIM | [ Alan Herva Ikhsan Saputra (244311001) dan Davin Rafael Suryatmoko (244311007) ] |
+| Judul ide | [ Klasifikasi Promosi Judi Online Menggunakan Random Forest ] |
+| SDG & target yang dipilih | [ SDG 3 – Good Health and Well-Being (Kehidupan Sehat dan Sejahtera), Target 3.4. Proyek ini diharapkan dapat mendukung upaya mengurangi paparan konten promosi judi online yang berpotensi berdampak buruk terhadap kesehatan mental dan kesejahteraan masyarakat. ] |
+| Masalah nyata yang diangkat | [ Promosi judi online masih banyak ditemukan di media sosial dengan berbagai bentuk tulisan dan kalimat. Banyaknya konten tersebut membuat proses identifikasi secara manual membutuhkan waktu dan tenaga. Oleh karena itu, diperlukan model Machine Learning yang dapat membantu mengklasifikasikan teks promosi judi online dan teks yang bukan promosi judi online secara otomatis. ] |
+| Tugas ML (Target & jenis tugas) | [ Target: Kolom label, dengan nilai 1 = promosi judi online dan 0 = bukan promosi judi online. Jenis tugas: Supervised Learning – Binary Classification (klasifikasi dua kelas). ] |
+| Objective & metrik utama | [ Membangun dan membandingkan tiga model Machine Learning untuk mengklasifikasikan teks promosi judi online. Metrik utama: F1-Score. Metrik pendukung: Accuracy, Precision, Recall, dan Confusion Matrix. ] |
+| Dataset (sumber, URL, ukuran, jenis data) | [ 1. Indonesian Online Gambling Promotion Multimodal Dataset, Sumber: Hugging Face – 0xRafie,URL: https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset,Ukuran: 5.028 data,Jenis data: Teks berbahasa Indonesia dan gambar,2. Indonesian Gambling Words Dataset,Sumber: Hugging Face,Ukuran: Sekitar 155.000 data,Jenis data: Teks berbahasa Indonesia yang berkaitan dengan judi online, dengan label klasifikasi,dan URL : https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset?utm_source=chatgpt.com ] |
+| Rencana tiga model (baseline / advanced / deep learning) | [ 1. Baseline: Multinomial Naive Bayes. 2. Advanced: Random Forest. 3. Deep Learning: Long Short-Term Memory (LSTM). Ketiga model akan dibandingkan menggunakan data pengujian dan metrik evaluasi yang sama ] |
+| Risiko & pertimbangan etika (bias, privasi) | [ Dataset memiliki kemungkinan bias karena data berasal dari beberapa platform media sosial dengan jumlah data yang berbeda. Teks juga dapat mengandung bahasa tidak baku, singkatan, atau kata-kata yang memiliki makna berbeda sesuai konteks. Untuk menjaga privasi, penelitian hanya menggunakan dataset yang tersedia untuk kepentingan akademik dan tidak bertujuan mengidentifikasi pemilik akun atau pengguna media sosial ] |
+| Referensi awal (minimal 2) | [ 
+
+1. 0xRafie. Indonesian Online Gambling Promotion Multimodal Dataset. Hugging Face. https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset. 2. Machine Learning and Deep Learning for Online Gambling Promotion Detection. ScienceDirect (2025). https://www.sciencedirect.com/ ] |
 
 **Kriteria persetujuan dosen:**
 - [ ] Ide berasal dari mahasiswa dan tidak duplikat

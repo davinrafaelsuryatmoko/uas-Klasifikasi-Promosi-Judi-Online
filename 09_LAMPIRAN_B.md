@@ -2,7 +2,7 @@
 
 | Komponen | Isian Mahasiswa |
 |----------|-----------------|
-| Nama / NIM | [ ... ] |
+| Nama / NIM | [ Alan Herva Ikhsan Saputra (244311001) dan Davin Rafael Suryatmoko (244311007) ] |
 | Judul ide | [ Klasifikasi Promosi Judi Online Indonesia ] |
 | SDG & target yang dipilih | [ SDG 3 – Good Health and Well-Being, Target 3.4: Mempromosikan kesehatan mental dan kesejahteraan. ] |
 | Masalah nyata yang diangkat | [ Banyak konten promosi judi online beredar di media sosial dengan berbagai bentuk kalimat, seperti ajakan bermain, penawaran bonus, dan janji mendapatkan keuntungan. Konten tersebut sulit diidentifikasi secara manual apabila jumlahnya banyak. Oleh karena itu, diperlukan pendekatan Machine Learning untuk membantu mengklasifikasikan konten promosi judi online dan konten bukan promosi. ] |
