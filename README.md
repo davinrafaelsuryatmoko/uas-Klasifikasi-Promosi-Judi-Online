@@ -252,7 +252,7 @@ Model akan dilatih minimal 10 epoch, kemudian dievaluasi menggunakan data testin
 ### 4.1 Informasi Dataset
 **Sumber Dataset:**  
 [Hugging Face – Indonesian Online Gambling Promotion Dataset
-link https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset?utm_source=chatgpt.com]
+link https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset?]
 
 **Deskripsi Dataset:**
 - Jumlah baris (rows): [	5.028 data]
@@ -1034,7 +1034,7 @@ Referensi resmi: [Transforming our world: the 2030 Agenda for Sustainable Develo
 | Masalah nyata yang diangkat | [ Promosi judi online masih banyak ditemukan di media sosial dengan berbagai bentuk tulisan dan kalimat. Banyaknya konten tersebut membuat proses identifikasi secara manual membutuhkan waktu dan tenaga. Oleh karena itu, diperlukan model Machine Learning yang dapat membantu mengklasifikasikan teks promosi judi online dan teks yang bukan promosi judi online secara otomatis. ] |
 | Tugas ML (Target & jenis tugas) | [ Target: Kolom label, dengan nilai 1 = promosi judi online dan 0 = bukan promosi judi online. Jenis tugas: Supervised Learning – Binary Classification (klasifikasi dua kelas). ] |
 | Objective & metrik utama | [ Membangun dan membandingkan tiga model Machine Learning untuk mengklasifikasikan teks promosi judi online. Metrik utama: F1-Score. Metrik pendukung: Accuracy, Precision, Recall, dan Confusion Matrix. ] |
-| Dataset (sumber, URL, ukuran, jenis data) | [ 1. Indonesian Online Gambling Promotion Multimodal Dataset, Sumber: Hugging Face – 0xRafie,URL: https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset,Ukuran: 5.028 data,Jenis data: Teks berbahasa Indonesia dan gambar,2. Indonesian Gambling Words Dataset,Sumber: Hugging Face,Ukuran: Sekitar 155.000 data,Jenis data: Teks berbahasa Indonesia yang berkaitan dengan judi online, dengan label klasifikasi,dan URL : https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset?utm_source=chatgpt.com ] |
+| Dataset (sumber, URL, ukuran, jenis data) | [ 1. Indonesian Online Gambling Promotion Multimodal Dataset, Sumber: Hugging Face – 0xRafie,URL: https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset,Ukuran: 5.028 data,Jenis data: Teks berbahasa Indonesia dan gambar,2. Indonesian Gambling Words Dataset,Sumber: Hugging Face,Ukuran: Sekitar 155.000 data,Jenis data: Teks berbahasa Indonesia yang berkaitan dengan judi online, dengan label klasifikasi,dan URL : https://huggingface.co/datasets/KagChi/indonesian-gambling-words? ] |
 | Rencana tiga model (baseline / advanced / deep learning) | [ 1. Baseline: Multinomial Naive Bayes. 2. Advanced: Random Forest. 3. Deep Learning: Long Short-Term Memory (LSTM). Ketiga model akan dibandingkan menggunakan data pengujian dan metrik evaluasi yang sama ] |
 | Risiko & pertimbangan etika (bias, privasi) | [ Dataset memiliki kemungkinan bias karena data berasal dari beberapa platform media sosial dengan jumlah data yang berbeda. Teks juga dapat mengandung bahasa tidak baku, singkatan, atau kata-kata yang memiliki makna berbeda sesuai konteks. Untuk menjaga privasi, penelitian hanya menggunakan dataset yang tersedia untuk kepentingan akademik dan tidak bertujuan mengidentifikasi pemilik akun atau pengguna media sosial ] |
 | Referensi awal (minimal 2) | [ 
