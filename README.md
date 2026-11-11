@@ -1,7 +1,7 @@
 ## INFORMASI PROYEK
 
 **Judul Proyek**: 
-["Klasifikasi Promosi Judi Online Menggunakan Random Forest"]
+["Klasifikasi Teks Promosi Judi Online Berbahasa Indonesia pada Media Sosial untuk Deteksi Spam Komentar YouTube Menggunakan Machine Learning dan Deep Learning"]
 
 **Identitas Kelompok:**
 
@@ -1031,7 +1031,7 @@ Referensi resmi: [Transforming our world: the 2030 Agenda for Sustainable Develo
 | Komponen | Isian Mahasiswa |
 |----------|-----------------|
 | Nama / NIM | [ Alan Herva Ikhsan Saputra (244311001) dan Davin Rafael Suryatmoko (244311007) ] |
-| Judul ide | [ Klasifikasi Promosi Judi Online Menggunakan Random Forest ] |
+| Judul ide | [ Klasifikasi Teks Promosi Judi Online Berbahasa Indonesia pada Media Sosial untuk Deteksi Spam Komentar YouTube Menggunakan Machine Learning dan Deep Learning] |
 | SDG & target yang dipilih | [ SDG 3 – Good Health and Well-Being (Kehidupan Sehat dan Sejahtera), Target 3.4. Proyek ini diharapkan dapat mendukung upaya mengurangi paparan konten promosi judi online yang berpotensi berdampak buruk terhadap kesehatan mental dan kesejahteraan masyarakat. ] |
 | Masalah nyata yang diangkat | [ Promosi judi online masih banyak ditemukan di media sosial dengan berbagai bentuk tulisan dan kalimat. Banyaknya konten tersebut membuat proses identifikasi secara manual membutuhkan waktu dan tenaga. Oleh karena itu, diperlukan model Machine Learning yang dapat membantu mengklasifikasikan teks promosi judi online dan teks yang bukan promosi judi online secara otomatis. ] |
 | Tugas ML (Target & jenis tugas) | [ Target: Kolom label, dengan nilai 1 = promosi judi online dan 0 = bukan promosi judi online. Jenis tugas: Supervised Learning – Binary Classification (klasifikasi dua kelas). ] |
