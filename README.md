@@ -85,6 +85,8 @@ Pada proyek ini, mahasiswa diharapkan dapat:
 
 Banyaknya konten tersebut membuat proses identifikasi secara manual membutuhkan waktu. Oleh karena itu, proyek ini menggunakan Machine Learning untuk mengklasifikasikan teks menjadi promosi judi online dan bukan promosi judi online menggunakan tiga pendekatan model, yaitu Naive Bayes, Random Forest, dan LSTM.]**
 
+> Perdana, R. B., Ardin, Budi, I., Santoso, A. B., Ramadiah, A., & Putra, P. K. (2024). Detecting Online Gambling Promotions on Indonesian Twitter Using Text Mining Algorithm. (IJACSA) International Journal of Advanced Computer Science and Applications,, 15(8), 942. https://thesai.org/Publications/ViewPaper?Code=IJACSA&Issue=8&SerialNo=93&Volume=15
+
 ### 2.2 Keterkaitan dengan SDGs (WAJIB)
 
 Ide proyek **berasal dari mahasiswa** dan harus selaras dengan **salah satu** dari 17 Sustainable Development Goals (daftar dan contoh inspirasi ada di Lampiran A).
