@@ -81,9 +81,6 @@ uas-Klasifikasi-Promosi-Judi-Online/
 ├── notebook/
 │   ├── 01_learning_problem_eda.ipynb       # [L] Data Understanding & Visualisasi EDA
 │   ├── 02_data_preparation.ipynb           # [L] Data Cleaning, Splitting, & Feature Extraction
-│   ├── 03_model_design_baseline_ml.ipynb   # [M+O] Pemodelan Naive Bayes & Random Forest
-│   ├── 04_deep_learning_optimization.ipynb # [M+O] Pemodelan & Optimasi LSTM
-│   └── 05_evaluation_comparison.ipynb      # [P] Evaluasi Akhir & Perbandingan Ketiga Model
 ├── reports/
 │   └── figures/                            # Grafik hasil EDA, training history, dan confusion matrix
 └── README.md
