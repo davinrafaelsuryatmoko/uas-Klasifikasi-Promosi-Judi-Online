@@ -262,7 +262,7 @@ Jelaskan setiap fitur/kolom yang ada dalam dataset.
 | platform | Categorical | Asal platform media sosial | Facebook, TikTok, X, Youtube |
 | label | Float | Kategori konten | 0.0 atau 1.0|
 
-\*\*[Fitur yang digunakan dalam penelitian:
+**Fitur yang digunakan dalam penelitian:**
 
 Fokus utama pemodelan adalah kolom `text_caption` sebagai fitur input dan `label` sebagai target prediksi. Kolom `platform` digunakan sebagai kunci stratifikasi saat pembagian data agar distribusi asal platform tetap seimbang di setiap subset. Kolom `id` dan `image_path` tidak digunakan dalam pemodelan karena penelitian ini berfokus pada klasifikasi teks.
 
@@ -297,21 +297,21 @@ Jelaskan kondisi dan permasalahan data:
 
 #### Visualisasi 1: Distribusi Kelas Target per Platform Media Sosial
 
-01_class_distribution_platform.png
+![Distribusi Kelas Target per Platform](../reports/figures/01_class_distribution_platform.png)
 
 **Insight:**  
 Platform YouTube menyumbang jumlah data terbanyak (6.219 data), diikuti X (2.167 data), TikTok (1.442 data), dan Facebook (1.419 data). Karena rasio label `0` dan `1` berbeda di tiap platform, pembagian data perlu menggunakan *stratified split* berbasis gabungan `platform` dan `label` agar setiap subset mewakili seluruh platform secara proporsional.
 
 #### Visualisasi 2: Distribusi Panjang Kata per Kelas
 
-02_word_length_distribution.png
+![Distribusi Panjang Kata per Kelas](../reports/figures/02_word_length_distribution.png)
 
 **Insight:**  
 Sebaran jumlah kata berbentuk menceng ke kanan dengan nilai median 11 kata, di mana mayoritas komentar maupun caption memiliki panjang di bawah 50 kata. Penetapan batas *padding* sebesar **100 kata** pada model LSTM sudah mencakup hampir seluruh distribusi utama dokumen tanpa terbebani *outlier* hingga 1.371 kata.
 
 #### Visualisasi 3: Top 15 Kata Paling Sering Muncul per Kelas
 
-03_top_ngrams_comparison.png
+![Top 15 Kata Paling Sering Muncul per Kelas](../reports/figures/03_top_ngrams_comparison.png)
 
 **Insight:**  
 Pada kelas **Promosi Judi Online**, kata yang paling mendominasi adalah istilah teknis dan ajakan permainan seperti *slot* (6.954 kali), *gacor* (5.374 kali), *pola* (3.133 kali), *maxwin* (2.530 kali), dan *olympus* (1.700 kali). Sebaliknya, kata umum seperti *judi* (531 kali), *judol* (431 kali), dan *online* (398 kali) justru banyak muncul pada kelas **Bukan Promosi (0)** dalam konteks diskusi umum atau berita. Perbedaan kosakata yang kontras ini menunjukkan bahwa fitur berbasis pembobotan kata (TF-IDF) maupun urutan kata (LSTM) sangat sesuai untuk membedakan kedua kelas.
@@ -344,7 +344,9 @@ Bagian ini menjelaskan **semua** proses transformasi dan preprocessing data yang
 2. **Sequence Padding & Truncating:** Untuk menyamakan dimensi input pada layer *Embedding* LSTM, seluruh urutan token diseragamkan panjangnya menjadi **100 token** (`maxlen=100`, `padding='post'`). Pemilihan batas 100 token didasarkan pada hasil EDA di mana ~95% dokumen bersih memiliki panjang $\le 100$ kata.
 
 ### 5.4 Data Splitting
+
 Sebanyak **10.558 data bersih** dibagi menggunakan **Stratified Split** berdasarkan kombinasi kolom `platform` dan `label` dengan `random_state=42`:
+
 - **Training set:** 80% (**8.446 sampel** — Label `0`: 4.878 [57,76%], Label `1`: 3.568 [42,24%])
 - **Validation set:** 10% (**1.056 sampel** — Label `0`: 610 [57,77%], Label `1`: 446 [42,23%])
 - **Test set:** 10% (**1.056 sampel** — Label `0`: 610 [57,77%], Label `1`: 446 [42,23%])
@@ -353,19 +355,18 @@ Sebanyak **10.558 data bersih** dibagi menggunakan **Stratified Split** berdasar
 Rasio **80 : 10 : 10** dipilih agar porsi 80% (8.446 sampel) memberikan cakupan kosakata yang memadai bagi pelatihan LSTM dan Random Forest, sementara masing-masing 10% (1.056 sampel) sudah representatif untuk validasi (*tuning* dan *EarlyStopping*) serta pengujian akhir (*test set*). Penggunaan *stratified split* berbasis gabungan `platform` dan `label` menjamin proporsi kelas target maupun asal platform tetap seragam di setiap subset, dan `random_state=42` menjamin hasil pembagian bersifat *reproducible*. Seluruh proses *fitting* `TfidfVectorizer` dan `Tokenizer` dilakukan **hanya pada training set** untuk mencegah *data leakage*.
 
 ### 5.5 Data Balancing
+
 Tidak dilakukan teknik *oversampling* sintetis (seperti SMOTE) maupun *undersampling* karena rasio kelas pada data latih sudah relatif seimbang (**57,76% kelas 0** vs **42,24% kelas 1**).
 
 ### 5.6 Ringkasan Data Preparation
 
-**Per langkah, jelaskan:**
-Aktivitas
-1. **Apa** yang dilakukan
 | Langkah | Apa yang Dilakukan | Mengapa Penting | Bagaimana Implementasinya |
 | :--- | :--- | :--- | :--- |
 | **1. Integrasi & Cleaning Teks** | Menggabungkan 2 dataset, normalisasi NFKC, *lowercase*, hapus URL/mention/simbol, dan konversi *leetspeak*. | Menyatukan sumber data dan menyamakan variasi penulisan spam judi online agar dikenali sebagai fitur yang sama. | Menggunakan `pd.concat()`, modul `unicodedata`, dan regex (`re`) dalam fungsi `bersihkan_teks()`. |
 | **2. Deduplikasi & Filtering** | Menghapus 114 baris kosong dan 575 duplikat setelah pembersihan (tersisa 10.558 data). | Mencegah teks kembar bocor ke *validation/test set* yang dapat membuat skor evaluasi bias. | Menggunakan `.drop_duplicates(subset=["clean_text"])` pada Pandas. |
 | **3. Stratified Splitting** | Membagi data menjadi 8.446 *train*, 1.056 *val*, dan 1.056 *test* berdasarkan `platform` + `label`. | Menjaga proporsi kelas (~57,8% : 42,2%) dan komposisi platform tetap merata di setiap subset. | Menggunakan `train_test_split(..., stratify=df_clean["strat_key"], random_state=42)`. |
 | **4. TF-IDF & Sequence Padding** | Pembobotan TF-IDF (5.000 fitur, unigram-bigram) dan tokenisasi + *padding* (panjang 100). | Mengubah teks tidak terstruktur menjadi representasi numerik bagi model ML klasik dan LSTM tanpa *data leakage*. | `TfidfVectorizer` dan Keras `Tokenizer` di-*fit* hanya pada `train_df`, lalu di-*transform* ke `val_df` dan `test_df`. |
+
 ---
 
 ## 6. MODELING **[M + O]**
