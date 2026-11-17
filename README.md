@@ -1,7 +1,7 @@
 ## INFORMASI PROYEK
 
 **Judul Proyek**: 
-["Klasifikasi Teks Promosi Judi Online Berbahasa Indonesia pada Media Sosial untuk Deteksi Spam Komentar YouTube Menggunakan Machine Learning dan Deep Learning"]
+["Klasifikasi Teks Promosi Judi Online Berbahasa Indonesia pada Media Sosial dan Komentar YouTube Menggunakan Machine Learning dan Deep Learning"]
 
 **Identitas Kelompok:**
 
@@ -71,21 +71,13 @@ Pada proyek ini, mahasiswa diharapkan dapat:
 ## 2. PROJECT OVERVIEW  **[L]**
 
 ### 2.1 Latar Belakang
-**Isi bagian ini dengan:**
-- Mengapa proyek ini penting?
-- Permasalahan umum pada domain terkait (misal: kesehatan, pendidikan, keuangan, pertanian, NLP, computer vision, dll.)
-- Manfaat proyek untuk pengguna, bisnis, atau penelitian
-- Studi literatur atau referensi ilmiah (minimal 1–2 sumber wajib)
-- Keterkaitan masalah dengan SDGs yang dipilih (dijabarkan di Bab 2.2)
+Judi online menjadi salah satu permasalahan serius di ruang digital Indonesia karena promosinya tersebar luas di media sosial dan kolom komentar YouTube dalam berbagai variasi teks. Banyaknya konten tersebut membuat proses penyaringan secara manual memakan waktu dan kurang efektif.
 
-**Contoh referensi (berformat APA/IEEE):**
-> Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press.
+Penelitian sebelumnya oleh Riza et al. (2025) membuktikan bahwa pemrosesan teks seperti normalisasi karakter Unicode dan pembobotan TF-IDF yang dikombinasikan dengan algoritma Naive Bayes efektif menyaring komentar spam promosi judi online pada YouTube. Selain itu, studi oleh Pratama et al. (2026) juga menunjukkan bahwa pendekatan Natural Language Processing dengan algoritma berbasis pohon keputusan seperti Random Forest mampu mengklasifikasikan komentar promosi judi online secara otomatis dengan tingkat akurasi tinggi. Oleh karena itu, proyek ini membandingkan tiga pendekatan model—Naive Bayes, Random Forest, dan LSTM—untuk mengklasifikasikan teks promosi judi online pada media sosial dan komentar YouTube.
 
-**[Judi online menjadi salah satu masalah yang banyak ditemukan di Indonesia. Promosinya tersebar melalui media sosial dengan berbagai bentuk, seperti ajakan bermain, bonus, dan hadiah.
+> Riza, F. J. M., Guntara, R. G., & Nugraha, M. R. (2025). Implementasi Algoritma Naive Bayes untuk Filtrasi Spam Komentar Judi Online pada YouTube. *Indonesian Journal of Digital Business*, 5(2), 411–423. https://doi.org/10.17509/ijdb.v5i2.88641
 
-Banyaknya konten tersebut membuat proses identifikasi secara manual membutuhkan waktu. Oleh karena itu, proyek ini menggunakan Machine Learning untuk mengklasifikasikan teks menjadi promosi judi online dan bukan promosi judi online menggunakan tiga pendekatan model, yaitu Naive Bayes, Random Forest, dan LSTM.]**
-
-> Perdana, R. B., Ardin, Budi, I., Santoso, A. B., Ramadiah, A., & Putra, P. K. (2024). Detecting Online Gambling Promotions on Indonesian Twitter Using Text Mining Algorithm. (IJACSA) International Journal of Advanced Computer Science and Applications,, 15(8), 942. https://thesai.org/Publications/ViewPaper?Code=IJACSA&Issue=8&SerialNo=93&Volume=15
+> Pratama, M. L. A., Yusuf, M. E., Ramdhani, M. R., Fathoni, & Ibrahim, A. (2026). Deteksi dan Klasifikasi Konten Promosi Judi Online pada Media Sosial YouTube Menggunakan Pendekatan Natural Language Processing dan Machine Learning. *JATI (Jurnal Mahasiswa Teknik Informatika)*, 10(3). https://doi.org/10.36040/jati.v10i3.18440
 
 ### 2.2 Keterkaitan dengan SDGs (WAJIB)
 
@@ -112,27 +104,10 @@ Jelaskan dalam 1 paragraf pendek bagaimana proyek Anda melewati tahap L → M �
 ## 3. BUSINESS UNDERSTANDING / PROBLEM UNDERSTANDING  **[L]**
 
 ### 3.1 Problem Statements
-Tuliskan 2–4 pernyataan masalah yang jelas dan spesifik.
-
-**Contoh (universal):**
-1. Model perlu mampu memprediksi nilai target dengan akurasi tinggi
-2. Sistem harus dapat mengidentifikasi pola pada citra secara otomatis
-3. Dataset memiliki noise sehingga perlu preprocessing yang tepat
-4. Dibutuhkan model deep learning yang mampu belajar representasi fitur kompleks
-
-**[1. Banyak konten promosi judi online tersebar di media sosial.
-
-
-
-2. Identifikasi konten promosi secara manual membutuhkan waktu.
-
-
-
-3. Diperlukan model yang mampu membedakan konten promosi judi online dan bukan promosi.
-
-
-
-4. Perlu dilakukan perbandingan beberapa model untuk mengetahui model dengan performa terbaik.]**
+1. Banyak konten promosi judi online tersebar di media sosial dan kolom komentar YouTube dengan variasi penulisan yang beragam.
+2. Identifikasi dan penyaringan konten promosi secara manual membutuhkan waktu serta tenaga yang besar.
+3. Diperlukan model klasifikasi otomatis yang mampu membedakan teks promosi judi online dan bukan promosi secara akurat.
+4. Diperlukan perbandingan beberapa pendekatan model (baseline, machine learning, dan deep learning) untuk menentukan model dengan performa terbaik.
 
 ### 3.2 Formulasi Learning Problem (WAJIB)
 
@@ -142,16 +117,14 @@ Rumuskan masalah dalam kerangka *Learning Problem*:
 |----------|--------------------|--------------|
 | **Target** | Apa yang diprediksi? Jenis tugas (klasifikasi biner/multikelas, regresi, forecasting, clustering, dll.)? | [ Mengklasifikasikan teks menjadi dua kelas: promosi judi online (1) dan bukan promosi judi online (0). Jenis tugas: Binary Classification. ] |
 | **Objective** | Apa yang dioptimalkan/diminimalkan secara matematis (misal: cross-entropy, MSE)? Metrik keberhasilan utama? | [ Meminimalkan kesalahan prediksi menggunakan fungsi loss Cross-Entropy dan memperoleh nilai F1-Score yang baik. ] |
-| **Data** | Sumber, ukuran, jenis, dan asumsi tentang data (i.i.d.? distribusi train vs test?) | [ Dataset teks berbahasa Indonesia dari Indonesian Online Gambling Promotion Dataset dan kandidat Indonesian Gambling Words Dataset. ] |
+| **Data** | Sumber, ukuran, jenis, dan asumsi tentang data (i.i.d.? distribusi train vs test?) | [ Gabungan dataset teks berbahasa Indonesia dari Indonesian Online Gambling Promotion Multimodal Dataset (0xRafie, 5.028 data) dan dataset hasil crawling mandiri komentar YouTube berbahasa Indonesia (6.219 data), dengan total 11.247 data berlabel biner (0 dan 1) ] |
 
 ### 3.3 Goals
-
-Tujuan harus spesifik, terukur, dan selaras dengan problem statement.
-**Contoh tujuan:**
-1. Membangun model ML untuk memprediksi variabel target dengan akurasi > 80%
-2. Mengukur performa tiga pendekatan model (baseline, advanced, deep learning)
-3. Menentukan model terbaik berdasarkan metrik evaluasi yang relevan
-4. Menghasilkan sistem yang dapat bekerja secara reproducible
+1. Mengolah dan membersihkan gabungan dataset teks promosi judi online dari media sosial dan komentar YouTube hingga siap digunakan untuk pemodelan.
+2. Membangun dan melatih tiga pendekatan model klasifikasi teks, yaitu Multinomial Naive Bayes, Random Forest, dan Long Short-Term Memory (LSTM).
+3. Membandingkan performa ketiga model menggunakan metrik evaluasi yang relevan (F1-Score, Accuracy, Precision, dan Recall).
+4. Menentukan model terbaik dengan target capaian nilai F1-Score di atas 0,85 pada data pengujian (*test set*).
+5. Mendukung upaya pencapaian SDG 3 (Target 3.4) melalui penyediaan model deteksi otomatis untuk membantu mengurangi paparan konten promosi judi online.
 
 > Sertakan minimal satu goal yang menunjukkan kontribusi terhadap target SDG yang dipilih (Bab 2.2).
 
@@ -252,16 +225,17 @@ Model akan dilatih minimal 10 epoch, kemudian dievaluasi menggunakan data testin
 
 ## 4. DATA UNDERSTANDING  **[L]**
 ### 4.1 Informasi Dataset
-**Sumber Dataset:**  
-[Hugging Face – Indonesian Online Gambling Promotion Dataset
-link https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset?]
 
-**Deskripsi Dataset:**
-- Jumlah baris (rows): [	5.028 data]
-- Jumlah kolom (columns/features): [5 kolom]
-- Tipe data: [Text dan Image (Multimodal)]
-- Ukuran dataset: [Sekitar 938 MB (termasuk gambar)]
-- Format file: [CSV dan JPG]
+**Sumber Dataset:**  
+1. **Indonesian Online Gambling Promotion Multimodal Dataset** (Hugging Face – `0xRafie`): https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset (5.028 data dari platform Facebook, TikTok, dan X).
+2. **YouTube Comments Gambling Dataset** (hasil *crawling* mandiri dari kolom komentar YouTube berbahasa Indonesia sebanyak 6.219 data).
+
+**Deskripsi Dataset (Gabungan):**
+- **Jumlah baris (rows):** 11.247 data (5.028 data dari `0xRafie` + 6.219 data dari komentar YouTube)
+- **Jumlah kolom (columns/features):** 5 kolom (`id`, `text_caption`, `image_path`, `platform`, `label`)
+- **Tipe data:** Teks dan Gambar (*Multimodal* pada dataset `0xRafie`, sedangkan dataset YouTube murni teks; penelitian ini hanya memakai fitur teks)
+- **Ukuran dataset:** Sekitar 938,7 MB secara keseluruhan (938 MB dari dataset `0xRafie` termasuk file gambar, dan 683 KB atau 0,67 MB dari file CSV komentar YouTube)
+- **Format file:** CSV dan JPG (untuk file gambar pada dataset `0xRafie`)
 
 ### 4.2 Deskripsi Fitur
 Jelaskan setiap fitur/kolom yang ada dalam dataset.
@@ -271,7 +245,7 @@ Jelaskan setiap fitur/kolom yang ada dalam dataset.
 | id | Integer | ID unik data | 1, 2, 3 |
 | text_caption | String | Teks atau caption postingan | "Daftar sekarang bonus member baru" |
 | image_path | String | Lokasi file gambar | image/image_1.jpg |
-| platform | Categorical | Asal platform media sosial | Facebook, TikTok, X |
+| platform | Categorical | Asal platform media sosial | Facebook, TikTok, X, Youtube |
 | label | Float | Kategori konten | 0.0 atau 1.0|
 
 **[Fitur yang digunakan dalam penelitian:
@@ -1030,18 +1004,17 @@ Referensi resmi: [Transforming our world: the 2030 Agenda for Sustainable Develo
 
 | Komponen | Isian Mahasiswa |
 |----------|-----------------|
-| Nama / NIM | [ Alan Herva Ikhsan Saputra (244311001) dan Davin Rafael Suryatmoko (244311007) ] |
-| Judul ide | [ Klasifikasi Teks Promosi Judi Online Berbahasa Indonesia pada Media Sosial untuk Deteksi Spam Komentar YouTube Menggunakan Machine Learning dan Deep Learning] |
-| SDG & target yang dipilih | [ SDG 3 – Good Health and Well-Being (Kehidupan Sehat dan Sejahtera), Target 3.4. Proyek ini diharapkan dapat mendukung upaya mengurangi paparan konten promosi judi online yang berpotensi berdampak buruk terhadap kesehatan mental dan kesejahteraan masyarakat. ] |
-| Masalah nyata yang diangkat | [ Promosi judi online masih banyak ditemukan di media sosial dengan berbagai bentuk tulisan dan kalimat. Banyaknya konten tersebut membuat proses identifikasi secara manual membutuhkan waktu dan tenaga. Oleh karena itu, diperlukan model Machine Learning yang dapat membantu mengklasifikasikan teks promosi judi online dan teks yang bukan promosi judi online secara otomatis. ] |
-| Tugas ML (Target & jenis tugas) | [ Target: Kolom label, dengan nilai 1 = promosi judi online dan 0 = bukan promosi judi online. Jenis tugas: Supervised Learning – Binary Classification (klasifikasi dua kelas). ] |
-| Objective & metrik utama | [ Membangun dan membandingkan tiga model Machine Learning untuk mengklasifikasikan teks promosi judi online. Metrik utama: F1-Score. Metrik pendukung: Accuracy, Precision, Recall, dan Confusion Matrix. ] |
-| Dataset (sumber, URL, ukuran, jenis data) | [ 1. Indonesian Online Gambling Promotion Multimodal Dataset, Sumber: Hugging Face – 0xRafie,URL: https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset, Ukuran: 5.028 data,Jenis data: Teks berbahasa Indonesia dan gambar,2. Indonesian Gambling Words Dataset,Sumber: Hugging Face,Ukuran: Sekitar 155.000 data,Jenis data: Teks berbahasa Indonesia yang berkaitan dengan judi online, dengan label klasifikasi,dan URL : https://huggingface.co/datasets/KagChi/indonesian-gambling-words? ] |
-| Rencana tiga model (baseline / advanced / deep learning) | [ 1. Baseline: Multinomial Naive Bayes. 2. Advanced: Random Forest. 3. Deep Learning: Long Short-Term Memory (LSTM). Ketiga model akan dibandingkan menggunakan data pengujian dan metrik evaluasi yang sama ] |
-| Risiko & pertimbangan etika (bias, privasi) | [ Dataset memiliki kemungkinan bias karena data berasal dari beberapa platform media sosial dengan jumlah data yang berbeda. Teks juga dapat mengandung bahasa tidak baku, singkatan, atau kata-kata yang memiliki makna berbeda sesuai konteks. Untuk menjaga privasi, penelitian hanya menggunakan dataset yang tersedia untuk kepentingan akademik dan tidak bertujuan mengidentifikasi pemilik akun atau pengguna media sosial ] |
-| Referensi awal (minimal 2) | [https://thesai.org/Publications/ViewPaper?Code=IJACSA&Issue=8&SerialNo=93&Volume=15]
+| Nama / NIM | Alan Herva Ikhsan Saputra (244311001) dan Davin Rafael Suryatmoko (244311007) |
+| Judul ide | Klasifikasi Teks Promosi Judi Online Berbahasa Indonesia pada Media Sosial dan Komentar YouTube Menggunakan Machine Learning dan Deep Learning |
+| SDG & target yang dipilih | SDG 3 – Good Health and Well-Being (Kehidupan Sehat dan Sejahtera), Target 3.4. Proyek ini diharapkan dapat mendukung upaya mengurangi paparan konten promosi judi online yang berpotensi berdampak buruk terhadap kesehatan mental dan kesejahteraan masyarakat. |
+| Masalah nyata yang diangkat | Promosi judi online masih banyak ditemukan di media sosial dan kolom komentar YouTube dengan berbagai variasi penulisan kalimat. Banyaknya konten tersebut membuat proses identifikasi secara manual membutuhkan waktu dan tenaga. Oleh karena itu, diperlukan model Machine Learning dan Deep Learning yang dapat membantu mengklasifikasikan teks promosi judi online dan bukan promosi secara otomatis. |
+| Tugas ML (Target & jenis tugas) | Target: Kolom `label`, dengan nilai `1` = promosi judi online dan `0` = bukan promosi judi online. Jenis tugas: *Supervised Learning – Binary Classification* (klasifikasi dua kelas). |
+| Objective & metrik utama | Meminimalkan kesalahan prediksi menggunakan fungsi loss *Cross-Entropy* dan membandingkan performa tiga model klasifikasi teks. Metrik utama: F1-Score. Metrik pendukung: Accuracy, Precision, Recall, dan Confusion Matrix. |
+| Dataset (sumber, URL, ukuran, jenis data) | 1. *Indonesian Online Gambling Promotion Multimodal Dataset* (Sumber: Hugging Face – `0xRafie`, URL: https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset, Ukuran: 5.028 data dari platform Facebook, TikTok, dan X, Jenis data: Teks berbahasa Indonesia dan gambar). <br> 2. *YouTube Comments Gambling Dataset* (Sumber: Hasil *crawling* mandiri komentar YouTube berbahasa Indonesia, Ukuran: 6.219 data, Jenis data: Teks berbahasa Indonesia). <br> Total keseluruhan setelah digabung berjumlah 11.247 data berlabel biner. |
+| Rencana tiga model (baseline / advanced / deep learning) | 1. Baseline: Multinomial Naive Bayes. <br> 2. Advanced: Random Forest. <br> 3. Deep Learning: Long Short-Term Memory (LSTM). <br> Ketiga model akan dilatih dan dibandingkan menggunakan data pengujian (*test set*) dan metrik evaluasi yang sama. |
+| Risiko & pertimbangan etika (bias, privasi) | Dataset memiliki kemungkinan bias karena berasal dari beberapa platform media sosial dan kolom komentar YouTube dengan gaya bahasa yang beragam (singkatan, bahasa tidak baku, simbol, dan karakter Unicode). Untuk menjaga privasi, penelitian hanya menggunakan teks konten untuk kepentingan akademik dan tidak mengumpulkan maupun mengidentifikasi identitas pemilik akun. |
+| Referensi awal (minimal 2) | 1. Riza, F. J. M., Guntara, R. G., & Nugraha, M. R. (2025). Implementasi Algoritma Naive Bayes untuk Filtrasi Spam Komentar Judi Online pada YouTube. *Indonesian Journal of Digital Business*, 5(2), 411–423. https://doi.org/10.17509/ijdb.v5i2.88641 <br> 2. Pratama, M. L. A., Yusuf, M. E., Ramdhani, M. R., Fathoni, & Ibrahim, A. (2026). Deteksi dan Klasifikasi Konten Promosi Judi Online pada Media Sosial YouTube Menggunakan Pendekatan Natural Language Processing dan Machine Learning. *JATI (Jurnal Mahasiswa Teknik Informatika)*, 10(3). https://doi.org/10.36040/jati.v10i3.18440 |
 
-1. 0xRafie. Indonesian Online Gambling Promotion Multimodal Dataset. Hugging Face. https://huggingface.co/datasets/0xRafie/indonesian-gambling-multimodal-dataset. 2. Machine Learning and Deep Learning for Online Gambling Promotion Detection. ScienceDirect (2025). https://www.sciencedirect.com/ ] |
 
 **Kriteria persetujuan dosen:**
 - [ ] Ide berasal dari mahasiswa dan tidak duplikat
