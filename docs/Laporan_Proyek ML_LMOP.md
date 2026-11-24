@@ -512,20 +512,20 @@ y_pred_advanced = model_advanced.predict(X_test)
 
 #### 6.3.1 Deskripsi Model **[M]**
 
-**Nama Model:** [Nama arsitektur, misal: CNN / LSTM / MLP]
+**Nama Model:** [Long Short-Term Memory (LSTM)]
 
 ** (Centang) Jenis Deep Learning: **
 
 - [ ] Multilayer Perceptron (MLP) - untuk tabular
 - [ ] Convolutional Neural Network (CNN) - untuk image
-- [ ] Recurrent Neural Network (LSTM/GRU) - untuk sequential/text
+- [x] Recurrent Neural Network (LSTM/GRU) - untuk sequential/text
 - [ ] Transfer Learning - untuk image
 - [ ] Transformer-based - untuk NLP
 - [ ] Autoencoder - untuk unsupervised
 - [ ] Neural Collaborative Filtering - untuk recommender
 
 **Alasan Pemilihan:**  
-[Mengapa arsitektur ini cocok untuk dataset Anda?]
+[Mengapa arsitektur ini cocok untuk dataset Anda? LSTM dipilih karena dataset yang digunakan berbentuk teks berbahasa Indonesia. Model ini dapat mempertimbangkan urutan kata dan hubungan antarkata yang mungkin berpengaruh terhadap makna sebuah kalimat]
 
 #### 6.3.2 Arsitektur Model, Hypothesis Space & Inductive Bias **[M]**
 
@@ -655,13 +655,12 @@ history = model_dl.fit(
 
 #### **Untuk Klasifikasi:**
 
-- **Accuracy**: Proporsi prediksi yang benar
-- **Precision**: TP / (TP + FP)
-- **Recall**: TP / (TP + FN)
-- **F1-Score**: Harmonic mean dari precision dan recall
+- **Accuracy**: Mengukur persentase keseluruhan prediksi yang benar
+- **Precision**: Mengukur ketepatan prediksi konten yang dikategorikan sebagai judi online
+- **Recall**: Mengukur kemampuan model menemukan seluruh konten promosi judi online
+- **F1-Score**: Menggabungkan precision dan recall
 - **ROC-AUC**: Area under ROC curve
-- **Confusion Matrix**: Visualisasi prediksi
-
+- **Confusion Matrix**: Menampilkan jumlah prediksi benar dan salah pada setiap kelas
 #### **Untuk Regresi:**
 
 - **MSE (Mean Squared Error)**: Rata-rata kuadrat error
