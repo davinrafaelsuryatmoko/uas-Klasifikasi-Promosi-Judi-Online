@@ -377,18 +377,20 @@ Tidak dilakukan teknik *oversampling* sintetis (seperti SMOTE) maupun *undersamp
 
 #### 6.1.1 Deskripsi Model **[M]**
 
-**Nama Model:** [Nama model, misal: Logistic Regression]  
+**Nama Model:** [Multinomial Naive Bayes]  
 **Teori Singkat:**  
-[Jelaskan secara singkat bagaimana model ini bekerja]  
+[Naive Bayes merupakan algoritma Machine Learning yang menggunakan prinsip probabilitas untuk mengklasifikasikan data. Algoritma ini menghitung kemungkinan sebuah teks termasuk kelas tertentu berdasarkan kata-kata yang terdapat di dalamnya.
+
+Dalam proyek ini, Naive Bayes digunakan untuk menentukan apakah sebuah teks termasuk promosi judi online atau bukan.]  
 **Alasan Pemilihan:**  
-[Mengapa memilih model ini sebagai baseline?]
+[Mengapa memilih model ini sebagai baseline? Naive Bayes dipilih sebagai baseline karena sederhana, proses pelatihannya relatif cepat, dan cocok digunakan untuk klasifikasi teks. Model ini juga dapat menjadi pembanding untuk mengetahui apakah Random Forest dan LSTM memberikan peningkatan performa]
 
 #### 6.1.2 Hypothesis Space & Inductive Bias **[M]**
 
-- **Model family / arsitektur:** [misal: model linear]
-- **Hypothesis space:** [himpunan fungsi yang dapat direpresentasikan, misal: batas keputusan linear]
-- **Inductive bias / asumsi:** [misal: hubungan fitur-target linear, fitur independen]
-- **Implikasi terhadap dataset Anda:** [apakah asumsi cocok dengan data?]
+- **Model family / arsitektur:** [Probabilistic Machine Learning]
+- **Hypothesis space:** [	Kumpulan kemungkinan probabilitas suatu teks termasuk kelas 0 atau 1]
+- **Inductive bias / asumsi:** [Mengasumsikan setiap kata memiliki kontribusi probabilitas yang independen terhadap kelas setelah diketahui kelasnya]
+- **Implikasi terhadap dataset Anda:** [Cocok untuk klasifikasi teks berdasarkan kemunculan kata, tetapi kurang memahami hubungan dan urutan antarkata]
 
 #### 6.1.3 Implementasi (Ringkas) **[M]**
 
@@ -423,27 +425,43 @@ y_pred_baseline = model_baseline.predict(X_test)
 
 #### 6.2.1 Deskripsi Model **[M]**
 
-**Nama Model:** [Nama model, misal: Random Forest / XGBoost]  
+**Nama Model:** [Random Forest Classifier]  
 **Teori Singkat:**  
-[Jelaskan bagaimana algoritma ini bekerja]
+[Random Forest merupakan algoritma Machine Learning yang menggabungkan banyak Decision Tree untuk menghasilkan keputusan klasifikasi.Dalam proyek ini, Random Forest digunakan untuk mengklasifikasikan teks promosi judi online berdasarkan fitur teks yang sudah diubah menjadi representasi angka menggunakan TF-IDF.]
 
 **Alasan Pemilihan:**  
-[Mengapa memilih model ini?]
+[Mengapa memilih model ini? Random Forest dipilih karena mampu mempelajari pola yang lebih kompleks dibandingkan model baseline. Algoritma ini juga dapat menangkap hubungan antarfitur dan tidak hanya bergantung pada hubungan linear.]
 
 **Keunggulan:**
 
-- [Sebutkan keunggulan]
+- Mampu mempelajari pola yang kompleks.
+
+
+
+- Menggabungkan banyak Decision Tree sehingga hasil prediksi lebih stabil.
+
+
+
+- Dapat digunakan untuk klasifikasi data teks yang sudah diubah menjadi fitur numerik.
 
 **Kelemahan:**
 
-- [Sebutkan kelemahan]
+- Membutuhkan sumber daya komputasi lebih besar dibandingkan Naive Bayes.
+
+
+
+- Proses pelatihan dapat lebih lama ketika jumlah pohon meningkat.
+
+
+
+- Hasilnya dapat sulit diinterpretasikan karena terdiri dari banyak pohon keputusan.
 
 #### 6.2.2 Hypothesis Space & Inductive Bias **[M]**
 
-- **Model family / arsitektur:** [misal: ensemble pohon keputusan]
-- **Hypothesis space:** [fungsi non-linear piecewise, interaksi fitur otomatis, dll.]
-- **Inductive bias / asumsi:** [misal: data tabular dengan struktur ambang/threshold]
-- **Perbandingan dengan baseline:** [apa yang bisa dipelajari model ini yang tidak bisa baseline?]
+- **Model family / arsitektur:** [Ensemble Learning berbasis Decision Tree]
+- **Hypothesis space:** [Kumpulan fungsi keputusan non-linear yang dibentuk dari gabungan banyak pohon keputusan
+- **Inductive bias / asumsi:** [Menggunakan pemisahan fitur berdasarkan kondisi atau threshold tertentu]
+- **Perbandingan dengan baseline:** [apa yang bisa dipelajari model ini yang tidak bisa baseline? Random Forest mampu mempelajari pola kombinasi fitur yang lebih kompleks, sedangkan Naive Bayes menggunakan pendekatan probabilitas]
 
 #### 6.2.3 Implementasi (Ringkas) **[M]**
 
