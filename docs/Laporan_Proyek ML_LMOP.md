@@ -470,17 +470,32 @@ Evaluasi awal dilakukan pada **Validation Set (1.056 sampel)** menggunakan `tfid
 #### 6.2.3 Implementasi (Ringkas) **[M]**
 
 ```python
-# Contoh kode
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
+# Menggunakan X_train, X_val dari TF-IDF vectorizer yang di-fit pada data latih (8.446 train, 1.056 val)
 model_advanced = RandomForestClassifier(
     n_estimators=100,
-    max_depth=10,
-    random_state=42
+    max_depth=None,
+    min_samples_split=2,
+    random_state=42,
+    n_jobs=-1
 )
 model_advanced.fit(X_train, y_train)
-y_pred_advanced = model_advanced.predict(X_test)
 ```
+
+#### Tabel Perbandingan Validation Set
+
+| Model | Accuracy | Precision | Recall | F1-Score |
+| :--- | :---: | :---: | :---: | :---: |
+| **Multinomial NB (Baseline)** | 0,8693 | **0,9400** | 0,7377 | 0,8266 |
+| **Random Forest (Awal)** | **0,9233** | 0,9234 | **0,8924** | **0,9076** |
+
+#### Ringkasan Perbandingan
+
+* **Performa Keseluruhan:** Random Forest awal unggul pada **F1-Score** (`0,9076` vs `0,8266`, selisih **+0,0810**), **Accuracy** (`0,9233` vs `0,8693`, selisih **+0,0540**), dan **Recall** (`0,8924` vs `0,7377`, selisih **+0,1547**) pada *validation set*.
+* **Precision vs Recall:** Multinomial Naive Bayes memiliki **Precision** sedikit lebih tinggi (`0,9400` vs `0,9234`, selisih `-0,0166`), menandakan prediksinya untuk kelas promosi sangat konservatif, tetapi *Recall*-nya lebih rendah sehingga lebih banyak teks promosi yang terlewat.
+* **Alasan Perbedaan:** Kombinasi *threshold* non-linear antarfitur TF-IDF pada Random Forest membantu menangkap variasi pola promosi judi online yang lebih luas dibandingkan asumsi independensi bersyarat pada Multinomial Naive Bayes.
 
 #### 6.2.4 Optimization: Hyperparameter Tuning **[O]**
 
