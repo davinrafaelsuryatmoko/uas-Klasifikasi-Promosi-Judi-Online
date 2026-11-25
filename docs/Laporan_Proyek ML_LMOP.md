@@ -548,8 +548,8 @@ model_advanced.fit(X_train, y_train)
 
 #### 6.3.2 Arsitektur Model, Hypothesis Space & Inductive Bias **[M]**
 
-**Inductive bias arsitektur:** [misal: CNN → lokalitas & translation invariance; LSTM → ketergantungan sekuensial; MLP → tanpa asumsi struktur]  
-**Hypothesis space:** [kapasitas model: jumlah layer, unit, parameter]
+**Inductive bias arsitektur:** [LSTM → ketergantungan sekuensial (memproses urutan kata berurutan dan menyimpan memori konteks penting lewat cell state]  
+**Hypothesis space:** [Kapasitas model yang ditentukan oleh susunan layer (Embedding → SpatialDropout1D → LSTM → Dense → Dropout → Output), jumlah unit/dimensi (vocab_size, embedding_dim, unit LSTM, dan unit Dense), serta jumlah parameter latih pada model.]
 
 **Deskripsi Layer:**
 
@@ -557,20 +557,20 @@ model_advanced.fit(X_train, y_train)
 
 **Contoh:**
 
-```
-1. Input Layer: shape (224, 224, 3)
-2. Conv2D: 32 filters, kernel (3,3), activation='relu'
-3. MaxPooling2D: pool size (2,2)
-4. Conv2D: 64 filters, kernel (3,3), activation='relu'
-5. MaxPooling2D: pool size (2,2)
-6. Flatten
-7. Dense: 128 units, activation='relu'
-8. Dropout: 0.5
-9. Dense: 10 units, activation='softmax'
+**Deskripsi Layer:**
 
-Total parameters: [jumlah]
-Trainable parameters: [jumlah]
-```
+| No | Layer | Konfigurasi Utama | Fungsi Singkat |
+| :---: | :--- | :--- | :--- |
+| 1 | **Input Layer** | `shape=(maxlen,)` (misal `maxlen=100`, `int32`) | Menerima urutan indeks kata dari setiap teks komentar/unggahan. |
+| 2 | **Embedding** | `vocab_size=10.000`, `output_dim=128`, `mask_zero=True` | Mengubah indeks kata menjadi vektor makna berdimensi 128 dan mengabaikan *padding* `0`. |
+| 3 | **SpatialDropout1D** | `rate=0.2` | Mengacak penghapusan fitur embedding agar model tidak bergantung pada kata tertentu (*overfitting*). |
+| 4 | **LSTM** | `units=64`, `dropout=0.2`, `recurrent_dropout=0.2` | Membaca urutan kata secara berurutan dan menyimpan konteks frasa promosi judi online. |
+| 5 | **Dense** | `units=32`, `activation="relu"` | Mengolah pola konteks hasil LSTM secara non-linear sebelum keputusan akhir. |
+| 6 | **Dropout** | `rate=0.3` | Regularisasi tambahan untuk mencegah *overfitting* pada lapisan *dense*. |
+| 7 | **Output Layer** | `units=1`, `activation="sigmoid"` | Menghasilkan probabilitas prediksi biner (`0` = bukan promosi, `1` = promosi). |
+
+- **Total parameters:** `[Salin angka exact dari output model.summary()]`
+- **Trainable parameters:** `[Salin angka exact dari output model.summary()]`
 
 #### 6.3.3 Input & Preprocessing Khusus **[M]**
 
