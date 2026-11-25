@@ -371,54 +371,58 @@ Tidak dilakukan teknik *oversampling* sintetis (seperti SMOTE) maupun *undersamp
 
 ## 6. MODELING **[M + O]**
 
-> Setiap model (6.1, 6.2, 6.3) dijelaskan dalam dua fase: **Model Design [M]** (sub-bagian .1–.3) dan **Optimization [O]** (sub-bagian .4–.6).
-
 ### 6.1 Model 1 — Baseline Model
 
 #### 6.1.1 Deskripsi Model **[M]**
 
-**Nama Model:** [Multinomial Naive Bayes]  
-**Teori Singkat:**  
-[Naive Bayes merupakan algoritma Machine Learning yang menggunakan prinsip probabilitas untuk mengklasifikasikan data. Algoritma ini menghitung kemungkinan sebuah teks termasuk kelas tertentu berdasarkan kata-kata yang terdapat di dalamnya.
-
-Dalam proyek ini, Naive Bayes digunakan untuk menentukan apakah sebuah teks termasuk promosi judi online atau bukan.]  
+**Nama Model:** Multinomial Naive Bayes  
+**Teori Singkat:**   
+Multinomial Naive Bayes adalah algoritma klasifikasi probabilistik berbasis Teorema Bayes yang menghitung probabilitas suatu dokumen termasuk ke dalam kelas tertentu berdasarkan kemunculan dan bobot kata di dalamnya.   
 **Alasan Pemilihan:**  
-[Mengapa memilih model ini sebagai baseline? Naive Bayes dipilih sebagai baseline karena sederhana, proses pelatihannya relatif cepat, dan cocok digunakan untuk klasifikasi teks. Model ini juga dapat menjadi pembanding untuk mengetahui apakah Random Forest dan LSTM memberikan peningkatan performa]
+Multinomial Naive Bayes dipilih sebagai *baseline* karena sesuai dengan karakteristik dataset teks dalam proyek ini yang direpresentasikan ke dalam matriks TF-IDF berdimensi tinggi (5.000 fitur *sparse* unigram dan bigram) serta memiliki perbedaan kosakata yang kontras antar kelas (seperti *slot*, *gacor*, *pola*, dan *maxwin* pada kelas promosi vs kosakata percakapan umum pada kelas bukan promosi). Selain sederhana dan memiliki waktu pelatihan sangat cepat, model ini bisa berperan sebagai tolok ukur dasar untuk mengukur peningkatan performa dari model *advanced* (Random Forest) dan *deep learning* (LSTM).
 
 #### 6.1.2 Hypothesis Space & Inductive Bias **[M]**
 
-- **Model family / arsitektur:** [Probabilistic Machine Learning]
-- **Hypothesis space:** [	Kumpulan kemungkinan probabilitas suatu teks termasuk kelas 0 atau 1]
-- **Inductive bias / asumsi:** [Mengasumsikan setiap kata memiliki kontribusi probabilitas yang independen terhadap kelas setelah diketahui kelasnya]
-- **Implikasi terhadap dataset Anda:** [Cocok untuk klasifikasi teks berdasarkan kemunculan kata, tetapi kurang memahami hubungan dan urutan antarkata]
+- **Model family / arsitektur:** Probabilistic Generative Classifier
+- **Hypothesis space:** Himpunan fungsi klasifikasi linear pada ruang logaritma probabilitas fitur kata, di mana keputusan kelas ditentukan oleh penjumlahan skor *log-likelihood* setiap kata/frasa ditambah *log-prior* kelas.
+- **Inductive bias / asumsi:** Mengasumsikan *conditional independence* (setiap kata/frasa dianggap saling independen satu sama lain apabila kelasnya telah diketahui) serta menerapkan pendekatan *bag-of-words* yang mengabaikan urutan dan struktur tata bahasa dalam kalimat.
+- **Implikasi terhadap dataset Anda:** Asumsi ini cocok untuk mendeteksi teks promosi yang secara eksplisit memuat kata kunci perjudian, tetapi memiliki keterbatasan dalam memahami konteks kalimat yang mengandung negasi, edukasi, atau sindiran (misalnya *"stop judi online"* atau keluhan korban *"rungkad main slot"*), serta promosi terselubung dengan variasi penulisan yang jarang muncul pada data latih.
 
 #### 6.1.3 Implementasi (Ringkas) **[M]**
 
 ```python
-# Contoh kode (opsional, bisa dipindah ke GitHub)
-from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import MultinomialNB
 
-model_baseline = LogisticRegression(C=1.0, max_iter=100)
+model_baseline = MultinomialNB(alpha=1.0, fit_prior=True)
 model_baseline.fit(X_train, y_train)
-y_pred_baseline = model_baseline.predict(X_test)
+y_val_pred = model_baseline.predict(X_val)
 ```
 
 #### 6.1.4 Optimization: Objective, Hyperparameter & Regularisasi **[O]**
 
-**Objective/loss yang dioptimalkan:** [misal: log-loss + L2]  
+**Objective/loss yang dioptimalkan:** [log-likelihood kelas terhadap fitur TF-IDF dan Regularisasi Laplace Smoothing]  
 **Parameter yang digunakan:**
 
 ```
-[Tuliskan parameter penting, contoh:]
-- C (regularization): 1.0
-- solver: 'lbfgs'
-- max_iter: 100
+- alpha: 1.0
+- fit_prior: true
 ```
 
 #### 6.1.5 Hasil Awal **[O → P]**
 
-**[Tuliskan hasil awal pada validation set; evaluasi akhir pada test set dijelaskan di Bab 7]**
+Evaluasi awal dilakukan pada **Validation Set (1.056 sampel)** menggunakan `tfidf_vectorizer.joblib` yang di-*fit* hanya pada data latih (*test set* tetap disimpan untuk evaluasi akhir pada Bab 7):
 
+| Subset Data | Accuracy | Precision | Recall | F1-Score |
+| :--- | :---: | :---: | :---: | :---: |
+| **Training Set** (8.446 sampel) | 0,9092 | 0,9618 | 0,8175 | 0,8838 |
+| **Validation Set** (1.056 sampel) | **0,8693** | **0,9400** | **0,7377** | **0,8266** |
+
+**Detail Evaluasi per Kelas (Validation Set):**
+
+| Kelas | Precision | Recall | F1-Score | Support |
+| :--- | :---: | :---: | :---: | :---: |
+| **0 - Bukan Promosi** | 0,8343 | 0,9656 | 0,8951 | 610 |
+| **1 - Promosi Judi Online** | 0,9400 | 0,7377 | 0,8266 | 446 |
 ---
 
 ### 6.2 Model 2 — ML / Advanced Model
